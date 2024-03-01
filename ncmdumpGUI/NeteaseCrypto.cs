@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -91,11 +92,14 @@ namespace ncmdumpGUI
             byte[] dontModifyDecryptChunk = Convert.FromBase64String(Encoding.UTF8.GetString(dontModifyChunk, startIndex, dontModifyChunk.Length - startIndex));
             int mdcLen = AesDecrypt(dontModifyDecryptChunk, _modifyBoxKey);
 
-            DataContractJsonSerializer d = new DataContractJsonSerializer(typeof(NeteaseCopyrightData));
             // skip `music:`
             using (MemoryStream reader = new MemoryStream(dontModifyDecryptChunk, 6, mdcLen - 6))
             {
-                _cdata = d.ReadObject(reader) as NeteaseCopyrightData;
+                var bytes = reader.ToArray();
+                var text = Encoding.UTF8.GetString(bytes);
+                _cdata = JsonConvert.DeserializeObject<NeteaseCopyrightData>(text);
+
+                var xxx = 0;
             }
 
             // skip crc & some use less chunk

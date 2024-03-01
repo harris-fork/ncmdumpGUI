@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -7,48 +8,47 @@ using System.Threading.Tasks;
 
 namespace ncmdumpGUI
 {
-    [DataContract]
     class NeteaseCopyrightData
     {
-        [DataMember(Name = "musicId")]
+        [JsonProperty("musicId")]
         public int MusicId { get; set; }
 
-        [DataMember(Name = "musicName")]
+        [JsonProperty("musicName")]
         public string MusicName { get; set; }
 
-        [DataMember(Name = "artist")]
-        public List<List<object>> Artist { get; set; }
+        [JsonProperty("artist")]
+        public List<List<string>> Artist { get; set; }
 
-        [DataMember(Name = "albumId")]
+        [JsonProperty("albumId")]
         public int AlbumId { get; set; }
 
-        [DataMember(Name = "album")]
+        [JsonProperty("album")]
         public string Album { get; set; }
 
-        [DataMember(Name = "albumPicDocId")]
+        [JsonProperty("albumPicDocId")]
         public string AlbumPicDocId { get; set; }
 
-        [DataMember(Name = "albumPic")]
+        [JsonProperty("albumPic")]
         public string AlbumPic { get; set; }
 
-        [DataMember(Name = "bitrate")]
+        [JsonProperty("bitrate")]
         public int Bitrate { get; set; }
 
-        [DataMember(Name = "mp3DocId")]
+        [JsonProperty("mp3DocId")]
         public string Mp3DocId { get; set; }
 
-        [DataMember(Name = "duration")]
+        [JsonProperty("duration")]
         public int Duration { get; set; }
 
-        [DataMember(Name = "mvId")]
-        public int MvId { get; set; }
+        [JsonProperty("mvId")]
+        public string MvId { get; set; }
 
-        [DataMember(Name = "alias")]
+        [JsonProperty("alias")]
         public List<string> Alias { get; set; }
 
         // missing `transNames` unknow type usually empty
 
-        [DataMember(Name = "format")]
+        [JsonProperty("format")]
         public string Format { get; set; }
     }
 }
